@@ -1,0 +1,241 @@
+Faizan Masood Portfolio
+
+# sidebar
+
+alt = Faizan Masood
+Faizan Masood
+Web developer
+
+Show Contacts
+
+Email
+Faizanbutt15@yahoo.com.com
+
+Phone
++92 3027959570
+
+Birthday
+Feb 15, 2002
+
+Location
+Valencia, Lahore, Pakistan
+
+# navbar
+
+About
+Resume
+Portfolio
+Blog
+Contact
+
+# about
+
+About me
+
+Hello! I’m Faizan Masood, a passionate Frontend Developer in Pakistan and a skilled Software Engineer with a strong focus on creating responsive, optimized, and fast-loading websites. I recently completed a 6-month internship where I worked on real-world projects, gaining hands-on experience in building high-quality web applications.
+
+I specialize in modern frontend technologies such as HTML, CSS, JavaScript, React.js, Tailwind CSS, and Next.js. My expertise lies in delivering custom website designs that are visually appealing and user-friendly, optimized for performance across all devices.
+
+I chose frontend development because I’m passionate about improving the web experience by crafting intuitive and accessible interfaces. Whether you're a business or a startup, I can help you build responsive web applications that stand out.
+
+Known for being detail-oriented, creative, and a fast learner, I’m eager to take on new challenges and contribute to meaningful projects. If you're looking for a freelance frontend developer to bring your ideas to life, let’s connect!
+## service
+
+What i'm doing
+
+alt = design icon
+Web design
+The most modern and high-quality design made at a professional level.
+
+alt = Web development icon
+Web development
+High-quality development of sites at the professional level.
+
+alt = clean code icon
+clean code icon
+Clean & Maintainable Code
+I write structured, scalable, and easy-to-read code that simplifies future maintenance, upgrades, and website reengineering
+alt = Responsive website icon
+Responsive Web Design
+I build fully responsive websites that deliver seamless experiences across all screen sizes — from mobile to desktop.
+
+## testimonials
+
+Testimonials
+
+alt = Daniel lewis
+Daniel lewis
+Faizan Masood was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+
+alt = Jessica miller
+Jessica miller
+Faizan Masood was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+
+alt = Emily evans
+Emily evans
+Faizan Masood was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+
+alt = Henry william
+Henry william
+Faizan Masood was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+
+
+## clients
+
+Clients
+
+alt = client logo
+
+
+
+# resume
+
+Resume
+
+Education
+
+University of Lahore
+2020 — 2024
+Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et quas molestias exceptur.
+
+Superior Group of Colleges
+2018 — 2020
+Ratione voluptatem sequi nesciunt, facere quisquams facere menda ossimus, omnis voluptas assumenda est omnis..
+
+Quaid Public Model High School
+2008 — 2018
+Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur magni dolores eos.
+
+Experience
+Freelancing
+2023 — Present
+I do Freelancing in Fiverr
+
+Internship
+2024 — 2025
+I do hand on experience internship on DigitalUX
+
+Web designer
+2024 — 2025
+Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et quas molestias exceptur.
+My skills
+
+HTML & CSS
+80%
+JavaScript
+70%
+REACT.JS
+60%
+NEXT.JS
+50%
+Tailwind CSS
+60
+
+
+
+# portfolio
+
+Portfolio
+
+All
+Web design
+Applications
+Web development
+
+Select category
+All
+Web design
+Applications
+Web development
+
+alt = finance
+Finance
+Web development
+
+alt = orizon
+Orizon
+Web development
+
+alt = fundo
+Fundo
+Web design
+
+alt = brawlhalla
+Brawlhalla
+Applications
+
+alt = dsm.
+DSM.
+Web design
+
+alt = metaspark
+MetaSpark
+Web design
+
+alt = summary
+Summary
+Web development
+
+alt = task manager
+Task Manager
+Applications
+
+alt = arrival
+Arrival
+Web development
+
+
+
+# blog
+
+Blog
+
+alt = Design conferences in 2022
+Design
+Fab 23, 2022
+Design conferences in 2022
+Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+
+alt = Best fonts every designer
+Design
+Fab 23, 2022
+Best fonts every designer
+Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
+
+alt = Design digest #80
+Design
+Fab 23, 2022
+Design digest #80
+Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
+
+alt = UI interactions of the week
+Design
+Fab 23, 2022
+UI interactions of the week
+Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
+
+alt = The forgotten art of spacing
+Design
+Fab 23, 2022
+The Forgotten Art Of Spacing
+Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+alt = Design digest #79
+Design
+Fab 23, 2022
+Design Digest #79
+Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
+
+
+
+# contact
+
+Contact
+
+Contact Form
+
+Full name
+Email address
+Your Message
+
+Send Message
