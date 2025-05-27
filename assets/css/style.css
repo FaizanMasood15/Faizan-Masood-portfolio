@@ -396,8 +396,14 @@ main {
 }
 
 .avatar-box {
-  background: var(--bg-gradient-onyx);
-  border-radius: 20px;
+    width: 200px; /* Adjust to match your image's width/height if different */
+    height: 200px; /* Make height equal to width for a perfect circle */
+    border-radius: 50%; /* This is the key for circular shape */
+    overflow: hidden; /* Clips content outside the circle */
+    display: flex; /* To center the image within the circle */
+    justify-content: center;
+    align-items: center;
+    background-color: var(--eerie-black-1); /* Optional: Background if image doesn't fill */
 }
 
 .info-content .name {
@@ -1401,10 +1407,11 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { gap: 25px; }
 
-  .avatar-box { border-radius: 30px; }
-
-  .avatar-box img { width: 120px; }
-
+.avatar-box img {
+    width: 100%; /* Make image fill the circular container */
+    height: 100%; /* Make image fill the circular container */
+    object-fit: cover; /* Crops the image to fit the circle without distorting */
+}
   .info-content .name { margin-bottom: 15px; }
 
   .info-content .title { padding: 5px 18px; }
@@ -1898,8 +1905,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .sidebar-info { flex-direction: column; }
-
-  .avatar-box img { width: 150px; }
 
   .info-content .name {
     white-space: nowrap;
