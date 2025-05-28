@@ -1025,9 +1025,9 @@ main {
 
 .project-img {
   position: relative;
-  width: 100%;
-  height: 200px;
-  border-radius: 16px;
+  width: 150%;
+  height: 250px;
+border-radius: 10px 10px 10px 10px;
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -1047,25 +1047,28 @@ main {
 .project-item > a:hover .project-img::before { background: hsla(0, 0%, 0%, 0.5); }
 
 .project-item-icon-box {
-  --scale: 0.8;
-
-  background: var(--jet);
-  color: var(--orange-yellow-crayola);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(var(--scale));
-  font-size: 20px;
-  padding: 18px;
-  border-radius: 12px;
-  opacity: 0;
-  z-index: 1;
-  transition: var(--transition-1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* This makes it hidden by default */
+    transition: opacity 0.3s ease;
+    z-index: 2; /* Ensure it's above the image */
 }
+.project-card-trigger:hover .project-item-icon-box {
+    opacity: 1; /* This makes it visible on hover */
+}
+
 
 .project-item > a:hover .project-item-icon-box {
   --scale: 1;
-  opacity: 1;
+  opacity:0;
 }
 
 .project-item-icon-box ion-icon { --ionicon-stroke-width: 50px; }
@@ -1815,46 +1818,8 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 }
 
-  /* Slideshow container */
-  .slideshow-container {
-    position: relative;
-    margin: auto;
-    max-width: 100%; /* Ensures responsiveness */
-    border-radius: 10px; /* Rounded corners for the container */
-    overflow: hidden; /* Hides any overflow from images/controls */
-    box-shadow: var(--shadow-1); /* Adds a subtle shadow */
-    background-color: var(--eerie-black-1); /* Background color for container */
-  }
-
-  /* Hide the images by default */
-  .mySlides {
-    display: none;
-  }
-
-  .mySlides img {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    display: block;
-    border-radius: 10px; /* Rounded corners for images */
-  }
-
-  /* Next & previous buttons */
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
-    z-index: 10; /* Ensure buttons are above images */
-  }
+  
+  
 
   /* Position the "next button" to the right */
   .next {
@@ -1862,10 +1827,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 3px 0 0 3px;
   }
 
-  /* On hover, add a black background with a little more opacity */
-  .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-  }
 
   /* Caption text */
   .text {
@@ -1881,51 +1842,207 @@ textarea.form-input::-webkit-resizer { display: none; }
     box-sizing: border-box; /* Include padding in width calculation */
   }
 
-  /* The dots/bullets/indicators container */
-  div[style="text-align:center"] {
-    padding: 10px 0; /* Add some padding around the dots */
-  }
 
-  /* The dots/bullets/indicators */
-  .dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-  }
 
-  .active-dot, .dot:hover {
-    background-color: var(--orange-yellow-crayola); /* Use your theme color for active/hover */
-  }
+/* --- NEW: Project Modal Styles --- */
+.project-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay background */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of everything */
+  opacity: 0; /* Start hidden */
+  visibility: hidden; /* Start hidden */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
-  /* Fading animation for slides */
-  .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
+.project-modal-container.active {
+  opacity: 1;
+  visibility: visible;
+}
 
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
+.project-modal-content {
+  position: relative;
+  background: var(--eerie-black-2); /* Modal background */
+  border: 1px solid var(--jet);
+  border-radius: 20px;
+  padding: 25px; /* Adjust padding if you want it smaller */
+  box-shadow: var(--shadow-1);
+  max-width: 900px; /* Changed: Max width for desktop screens */
+  width: 90%; /* Added: Ensures it's responsive and takes up less space on smaller screens while max-width applies */
+  max-height: 80%; /* Changed: Max height as 90% of viewport height */
+  overflow-y: auto; /* Enable scrolling for content if needed */
+  transform: scale(0.9); /* Start slightly smaller */
+  transition: transform 0.3s ease;
+}
+.project-modal-container.active .project-modal-content {
+  transform: scale(1); /* Scale to full size when active */
+}
 
-  /* Responsive adjustments for smaller screens */
-  @media (max-width: 768px) {
-    .prev, .next {
-      font-size: 14px;
-      padding: 10px;
-      margin-top: -15px;
-    }
-    .text {
-      font-size: 12px;
-      padding: 5px 8px;
-    }
-    .dot {
-      height: 8px;
-      width: 8px;
-    }
+.project-modal-content .modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--white-2);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.project-modal-content .modal-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.project-modal-content .modal-title {
+  color: var(--white-2);
+  font-size: var(--fs-2);
+  margin-bottom: 10px;
+}
+
+.project-modal-content .modal-description {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.project-modal-content .modal-description ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.project-modal-content .modal-description li {
+  margin-bottom: 5px;
+}
+
+/* --- Slideshow Styles (ADJUSTED FOR MODAL) --- */
+/* These styles are for the slideshow *inside* the modal */
+.slideshow-container-modal {
+  position: relative;
+  margin: auto;
+  max-width: 100%; /* Ensures responsiveness */
+  border-radius: 10px; /* Rounded corners for the container */
+  overflow: hidden; /* Hides any overflow from images/controls */
+  box-shadow: var(--shadow-1); /* Adds a subtle shadow */
+  background-color: var(--eerie-black-1); /* Background color for container */
+}
+
+.mySlides-modal {
+  display: none;
+}
+
+.mySlides-modal img {
+  max-width: 80%;   /* NEW: Limit the image to 80% of the modal's slideshow container width */
+  max-height: 350px; /* NEW: Set a maximum height for the image */
+  width: auto;      /* NEW: Allow width to adjust automatically based on max-width */
+  height: auto;     /* NEW: Allow height to adjust automatically based on max-height */
+  display: block;
+  margin: 0 auto;   /* NEW: Center the image horizontally within its container */
+  border-radius: 10px;
+  object-fit: contain; /* NEW: Ensures the entire image is visible within its bounds,
+                               adding letterboxing if aspect ratios differ */
+}
+.prev-modal, .next-modal {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.next-modal {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev-modal:hover, .next-modal:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text in modal */
+.slideshow-container-modal .text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
+}
+
+/* Dots container in modal */
+.project-modal-content div[style="text-align:center"] {
+  padding: 10px 0;
+}
+
+/* Dots in modal */
+.dot-modal {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active-dot-modal, .dot-modal:hover {
+  background-color: var(--orange-yellow-crayola);
+}
+
+/* Fading animation for slides in modal */
+.slideshow-container-modal .fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+/* @keyframes fade is already defined in your CSS, no need to duplicate */
+
+/* Responsive adjustments for smaller screens in modal */
+@media (max-width: 768px) {
+  .project-modal-content {
+    padding: 15px;
+    max-width: 95%;
   }
+  .project-modal-content .modal-close-btn {
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
+  }
+  .prev-modal, .next-modal {
+    font-size: 14px;
+    padding: 10px;
+    margin-top: -15px;
+  }
+  .slideshow-container-modal .text {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  .dot-modal {
+    height: 8px;
+    width: 8px;
+  }
+}
+  

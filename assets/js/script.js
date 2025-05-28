@@ -166,103 +166,116 @@ navigationLinks.forEach(link => {
     });
 });
 
-  let slideIndex = 1; // Current slide index
-  let slideTimer; // Variable to hold the automatic slideshow timer
+ // --- NEW: Project Modal Slideshow Logic ---
+const projectModalContainer = document.querySelector("[data-project-modal-container]");
+const projectModalOverlay = document.querySelector("[data-project-modal-overlay]");
+const projectModalCloseBtn = document.querySelector("[data-project-modal-close-btn]");
+const projectTriggers = document.querySelectorAll("[data-project-trigger]"); // Select all project triggers
 
-  // showSlides function: Controls which slide is displayed
-  function showSlides(n) {
+let slideIndexModal = 1; // Current slide index for the modal slideshow
+let slideTimerModal; // Variable to hold the automatic slideshow timer for modal
+
+// showSlidesModal function: Controls which slide is displayed in the modal
+function showSlidesModal(n) {
     let i;
-    let slides = document.getElementsByClassName("mySlides"); // Get all slides
-    let dots = document.getElementsByClassName("dot"); // Get all dots
+    let slides = document.getElementsByClassName("mySlides-modal"); // Get all modal slides
+    let dots = document.getElementsByClassName("dot-modal"); // Get all modal dots
 
-    // Wrap around logic: If n is greater than total slides, go to first slide.
-    // If n is less than 1, go to last slide.
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
+    if (n > slides.length) { slideIndexModal = 1 }
+    if (n < 1) { slideIndexModal = slides.length }
 
-    // Hide all slides
     for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+        slides[i].style.display = "none";
     }
-
-    // Remove 'active-dot' class from all dots
     for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active-dot", "");
+        dots[i].className = dots[i].className.replace(" active-dot-modal", "");
     }
 
-    // Display the current slide and mark the corresponding dot as active
-    if (slides[slideIndex - 1]) { // Ensure the slide element exists
-      slides[slideIndex - 1].style.display = "block";
-      if (dots[slideIndex - 1]) { // Ensure the dot element exists
-        dots[slideIndex - 1].className += " active-dot";
-      }
+    if (slides[slideIndexModal - 1]) {
+        slides[slideIndexModal - 1].style.display = "block";
+        if (dots[slideIndexModal - 1]) {
+            dots[slideIndexModal - 1].className += " active-dot-modal";
+        }
     }
-  }
+}
 
-  // plusSlides function: Changes the slide by a given number (e.g., +1 for next, -1 for previous)
-  function plusSlides(n) {
-    clearTimeout(slideTimer); // Clear any existing automatic timer
-    showSlides(slideIndex += n); // Update slide index and show the new slide
-    startSlideTimer(); // Restart the automatic timer
-  }
+// plusSlidesModal function: Changes the slide in the modal by a given number
+function plusSlidesModal(n) {
+    clearTimeout(slideTimerModal);
+    showSlidesModal(slideIndexModal += n);
+    startSlideTimerModal();
+}
 
-  // currentSlide function: Displays a specific slide when a dot is clicked
-  function currentSlide(n) {
-    clearTimeout(slideTimer); // Clear any existing automatic timer
-    showSlides(slideIndex = n); // Set slide index to n and show that slide
-    startSlideTimer(); // Restart the automatic timer
-  }
+// currentSlideModal function: Displays a specific slide in the modal when a dot is clicked
+function currentSlideModal(n) {
+    clearTimeout(slideTimerModal);
+    showSlidesModal(slideIndexModal = n);
+    startSlideTimerModal();
+}
 
-  // startSlideTimer function: Sets up the automatic slideshow
-  function startSlideTimer() {
-      // Clear any previous timer to prevent multiple timers running
-      clearTimeout(slideTimer);
-      slideTimer = setTimeout(() => {
-          plusSlides(1); // Move to the next slide automatically
-      }, 5000); // Change image every 5 seconds (5000 milliseconds)
-  }
+// startSlideTimerModal function: Sets up the automatic slideshow for the modal
+function startSlideTimerModal() {
+    clearTimeout(slideTimerModal);
+    slideTimerModal = setTimeout(() => {
+        plusSlidesModal(1);
+    }, 5000); // Change image every 5 seconds
+}
 
+// Function to open the project modal
+function openProjectModal() {
+    if (projectModalContainer) {
+        projectModalContainer.classList.add("active");
+        // Initialize or reset the slideshow when the modal opens
+        slideIndexModal = 1; // Start from the first slide
+        showSlidesModal(slideIndexModal);
+        startSlideTimerModal(); // Start auto-play
+    }
+}
 
-  // Initialize the slideshow when the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', () => {
-      // Get references to the slideshow elements within the portfolio section
-      const portfolioSection = document.querySelector('.portfolio');
-      if (portfolioSection) { // Check if the portfolio section exists on the page
-          // Attach event listeners to the navigation buttons
-          const prevButton = portfolioSection.querySelector('.slideshow-container .prev');
-          const nextButton = portfolioSection.querySelector('.slideshow-container .next');
-          // Attach event listener to the dots container (using event delegation for efficiency)
-          const dotsContainer = portfolioSection.querySelector('div[style="text-align:center"]');
+// Function to close the project modal
+function closeProjectModal() {
+    if (projectModalContainer) {
+        projectModalContainer.classList.remove("active");
+        clearTimeout(slideTimerModal); // Stop auto-play when modal closes
+    }
+}
 
-          if (prevButton) {
-              // Use the global plusSlides function
-              prevButton.addEventListener('click', () => plusSlides(-1));
-          }
-          if (nextButton) {
-              // Use the global plusSlides function
-              nextButton.addEventListener('click', () => plusSlides(1));
-          }
-          if (dotsContainer) {
-              // Use event delegation to handle clicks on any dot
-              dotsContainer.addEventListener('click', (event) => {
-                  if (event.target.classList.contains('dot')) {
-                      // Get the slide index from the data-slide-index attribute (if added, or use currentSlide(index))
-                      // For this setup, we use the onclick directly in HTML, so this block might be redundant
-                      // if you remove onclick from HTML, you'd use parseInt(event.target.dataset.slideIndex)
-                      currentSlide(Array.from(dots).indexOf(event.target) + 1); // Get index of clicked dot
-                  }
-              });
-          }
+// Add click event to project trigger (e.g., Plant Pal Pro project item)
+projectTriggers.forEach(trigger => {
+    trigger.addEventListener("click", function() {
+        // You can add logic here to load dynamic content based on which project was clicked
+        // For now, we'll just open the Plant Pal Pro modal
+        if (this.dataset.projectTrigger === "plant-pal-pro") {
+            openProjectModal();
+        }
+    });
+});
 
-          // Initial display: Show the first slide and start the automatic timer
-          showSlides(slideIndex);
-          startSlideTimer();
-      }
-  });
+// Add click event to modal close button
+if (projectModalCloseBtn) {
+    projectModalCloseBtn.addEventListener("click", closeProjectModal);
+}
 
-  // Make showSlides, plusSlides, currentSlide globally accessible
-  // This is important because your HTML uses inline onclick attributes
-  window.showSlides = showSlides;
-  window.plusSlides = plusSlides;
-  window.currentSlide = currentSlide;
+// Add click event to overlay to close modal
+if (projectModalOverlay) {
+    projectModalOverlay.addEventListener("click", closeProjectModal);
+}
 
+// NEW: Add click events for modal slideshow navigation arrows
+const prevModalBtn = document.querySelector(".prev-modal");
+const nextModalBtn = document.querySelector(".next-modal");
+
+if (prevModalBtn) {
+    prevModalBtn.addEventListener("click", () => plusSlidesModal(-1));
+}
+
+if (nextModalBtn) {
+    nextModalBtn.addEventListener("click", () => plusSlidesModal(1));
+}
+
+// Make modal slideshow functions globally accessible for inline onclicks on dots
+window.plusSlidesModal = plusSlidesModal; // Keep this line
+window.currentSlideModal = currentSlideModal; // Keep this line
+// Make modal slideshow functions globally accessible for inline onclicks on dots
+window.plusSlidesModal = plusSlidesModal;
+window.currentSlideModal = currentSlideModal;
