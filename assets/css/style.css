@@ -1706,7 +1706,11 @@ article {
       width: auto; /* Let flexbox control width */
       max-width: none; /* Remove max-width constraint for desktop flex */
       box-shadow: var(--shadow-5);
+  }.avatar-box {
+      width: 170px; /* Smaller size for larger phones/small tablets */
+      height: 170px;
   }
+
   article { min-height: 100%; } /* Ensure articles stretch within flex container */
 
   /* MAIN */
