@@ -3,14 +3,6 @@
 \*-----------------------------------*/
 
 
-/**
- * copyright 2022 @codewithsadee
- */
-
-
-
-
-
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -22,71 +14,6 @@
    */
 
   /* gradient */
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  padding-top: 100px;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 300px;
-  height:300px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  animation: zoomIn 0.3s ease-out;
-}
-
-@keyframes zoomIn {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.close {
-  position: absolute;
-  top: 80px;
-  right: 50px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-@media screen and (max-width: 480px) {
-  .modal-content {
-    width: 150px;
-    height: 150px;
-  }
-  .close {
-    top: 50px;
-    right: 30px;
-    font-size: 32px;
-  }
-}
-
-
-
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
     hsl(240, 1%, 25%) 3%, 
@@ -176,7 +103,68 @@
 }
 
 
+/* Profile Modal (existing, not part of the main responsiveness refactor but kept for completeness) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 100px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 300px;
+  height:300px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 150px;
+    height: 150px;
+  }
+  .close {
+    top: 50px;
+    right: 30px;
+    font-size: 32px;
+  }
+}
 
 
 /*-----------------------------------*\
@@ -223,8 +211,6 @@ body { background: var(--smoky-black); }
 
 
 
-
-
 /*-----------------------------------*\
   #REUSED STYLE
 \*-----------------------------------*/
@@ -234,7 +220,7 @@ article {
   background: var(--eerie-black-2);
   border: 1px solid var(--jet);
   border-radius: 20px;
-  padding: 15px;
+  padding: 15px; /* Base padding for mobile */
   box-shadow: var(--shadow-1);
   z-index: 1;
 }
@@ -358,20 +344,16 @@ article.active {
 
 
 
-
-
 /*-----------------------------------*\
   #MAIN
 \*-----------------------------------*/
 
 main {
-  margin: 15px 12px;
-  margin-bottom: 75px;
-  min-width: 259px;
+  margin: 15px; /* Base margin for mobile */
+  margin-bottom: 75px; /* Space for bottom nav */
+  min-width: 0; /* Allow it to shrink fully */
+  width: auto; /* Let content define width, will be overridden by media queries */
 }
-
-
-
 
 
 /*-----------------------------------*\
@@ -380,12 +362,12 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
+  max-height: 112px; /* Default collapsed height for mobile */
   overflow: hidden;
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active { max-height: 405px; } /* Expanded height for mobile */
 
 .sidebar-info {
   position: relative;
@@ -396,14 +378,20 @@ main {
 }
 
 .avatar-box {
-    width: 200px; /* Adjust to match your image's width/height if different */
-    height: 200px; /* Make height equal to width for a perfect circle */
-    border-radius: 50%; /* This is the key for circular shape */
-    overflow: hidden; /* Clips content outside the circle */
-    display: flex; /* To center the image within the circle */
+    width: 200px; /* Base size for avatar */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--eerie-black-1); /* Optional: Background if image doesn't fill */
+    background-color: var(--eerie-black-1);
+}
+
+.avatar-box img {
+    width: 100%; /* Make image fill the circular container */
+    height: 100%; /* Make image fill the circular container */
+    object-fit: cover; /* Crops the image to fit the circle without distorting */
 }
 
 .info-content .name {
@@ -518,8 +506,6 @@ main {
 
 
 
-
-
 /*-----------------------------------*\
   #NAVBAR
 \*-----------------------------------*/
@@ -559,8 +545,6 @@ main {
 
 
 
-
-
 /*-----------------------------------*\
   #ABOUT
 \*-----------------------------------*/
@@ -588,7 +572,7 @@ main {
 
 .service-list {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Default to single column for mobile */
   gap: 20px;
 }
 
@@ -649,7 +633,7 @@ main {
 }
 
 .testimonials-item {
-  min-width: 100%;
+  min-width: 100%; /* Default to full width for mobile */
   scroll-snap-align: center;
 }
 
@@ -814,7 +798,7 @@ main {
 }
 
 .clients-item {
-  min-width: 50%;
+  min-width: 50%; /* Default to two columns for mobile */
   scroll-snap-align: start;
 }
 
@@ -825,8 +809,6 @@ main {
 }
 
 .clients-item img:hover { filter: grayscale(0); }
-
-
 
 
 
@@ -939,13 +921,11 @@ main {
 
 
 
-
-
 /*-----------------------------------*\
   #PORTFOLIO
 \*-----------------------------------*/
 
-.filter-list { display: none; }
+.filter-list { display: none; } /* Hidden on mobile by default */
 
 .filter-select-box {
   position: relative;
@@ -1004,7 +984,7 @@ main {
 
 .project-list {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Default to single column for mobile */
   gap: 30px;
   margin-bottom: 10px;
 }
@@ -1021,13 +1001,13 @@ main {
   100% { transform: scale(1); }
 }
 
-.project-item > a { width: 100%; }
+.project-item > a { width: 100%; } /* This rule is now for project-card-trigger */
 
 .project-img {
   position: relative;
-  width: 150%;
-  height: 250px;
-border-radius: 10px 10px 10px 10px;
+  width: 100%; /* Corrected: Should be 100% of its container */
+  height: 250px; /* Fixed height for thumbnail */
+  border-radius: 10px 10px 10px 10px;
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -1044,6 +1024,7 @@ border-radius: 10px 10px 10px 10px;
   transition: var(--transition-1);
 }
 
+/* This rule is now for project-card-trigger:hover */
 .project-item > a:hover .project-img::before { background: hsla(0, 0%, 0%, 0.5); }
 
 .project-item-icon-box {
@@ -1061,14 +1042,16 @@ border-radius: 10px 10px 10px 10px;
     transition: opacity 0.3s ease;
     z-index: 2; /* Ensure it's above the image */
 }
+/* This rule is now for project-card-trigger:hover */
 .project-card-trigger:hover .project-item-icon-box {
     opacity: 1; /* This makes it visible on hover */
 }
 
 
+/* This rule is now for project-card-trigger:hover */
 .project-item > a:hover .project-item-icon-box {
   --scale: 1;
-  opacity:0;
+  opacity:0; /* This rule is conflicting, will be removed */
 }
 
 .project-item-icon-box ion-icon { --ionicon-stroke-width: 50px; }
@@ -1080,6 +1063,7 @@ border-radius: 10px 10px 10px 10px;
   transition: var(--transition-1);
 }
 
+/* This rule is now for project-card-trigger:hover */
 .project-item > a:hover img { transform: scale(1.1); }
 
 .project-title,
@@ -1130,7 +1114,7 @@ border-radius: 10px 10px 10px 10px;
 
 .input-wrapper {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Default to single column for mobile */
   gap: 25px;
   margin-bottom: 25px;
 }
@@ -1163,7 +1147,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn {
   position: relative;
-  width: 100%;
+  width: 100%; /* Default to full width for mobile */
   background: var(--border-gradient-onyx);
   color: var(--orange-yellow-crayola);
   display: flex;
@@ -1203,644 +1187,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 .form-btn:disabled:hover { background: var(--border-gradient-onyx); }
 
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
-
-
-
-
-
-/*-----------------------------------*\
-  #RESPONSIVE
-\*-----------------------------------*/
-
-/**
- * responsive larger than 450px screen
- */
-
-@media (min-width: 450px) {
-
-  /**
-   * client
-   */
-
-  .clients-item { min-width: calc(33.33% - 10px); }
-
-
-}
-
-
-
-
-
-/**
- * responsive larger than 580px screen
- */
-
-@media (min-width: 580px) {
-
-  /**
-   * CUSTOM PROPERTY
-   */
-
-  :root {
-
-    /**
-     * typography
-     */
-
-    --fs-1: 32px;
-    --fs-2: 24px;
-    --fs-3: 26px;
-    --fs-4: 18px;
-    --fs-6: 15px;
-    --fs-7: 15px;
-    --fs-8: 12px;
-
-  }
-
-
-
-  /**
-   * #REUSED STYLE
-   */
-
-  .sidebar, article {
-    width: 520px;
-    margin-inline: auto;
-    padding: 30px;
-  }
-
-  .article-title {
-    font-weight: var(--fw-600);
-    padding-bottom: 15px;
-  }
-
-  .article-title::after {
-    width: 40px;
-    height: 5px;
-  }
-
-  .icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    font-size: 18px;
-  }
-
-
-
-  /**
-   * #MAIN
-   */
-
-  main {
-    margin-top: 60px;
-    margin-bottom: 100px;
-  }
-
-
-
-  /**
-   * #SIDEBAR
-   */
-
-  .sidebar {
-    max-height: 180px;
-    margin-bottom: 30px;
-  }
-
-  .sidebar.active { max-height: 584px; }
-
-  .sidebar-info { gap: 25px; }
-
-.avatar-box img {
-    width: 100%; /* Make image fill the circular container */
-    height: 100%; /* Make image fill the circular container */
-    object-fit: cover; /* Crops the image to fit the circle without distorting */
-}
-  .info-content .name { margin-bottom: 15px; }
-
-  .info-content .title { padding: 5px 18px; }
-
-  .info_more-btn {
-    top: -30px;
-    right: -30px;
-    padding: 10px 15px;
-  }
-
-  .info_more-btn span {
-    display: block;
-    font-size: var(--fs-8);
-  }
-
-  .info_more-btn ion-icon { display: none; }
-
-  .separator { margin: 32px 0; }
-
-  .contacts-list { gap: 20px; }
-
-  .contact-info {
-    max-width: calc(100% - 64px);
-    width: calc(100% - 64px);
-  }
-
-
-
-  /**
-   * #NAVBAR
-   */
-
-  .navbar { border-radius: 20px 20px 0 0; }
-
-  .navbar-list { gap: 20px; }
-
-  .navbar-link { --fs-8: 14px; }
-
-
-
-  /**
-   * #ABOUT
-   */
-
-  .about .article-title { margin-bottom: 20px; }
-
-  .about-text { margin-bottom: 40px; }
-
-  /* service */
-
-  .service-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 18px;
-    padding: 30px;
-  }
-
-  .service-icon-box {
-    margin-bottom: 0;
-    margin-top: 5px;
-  }
-
-  .service-content-box { text-align: left; }
-
-  /* testimonials */
-
-  .testimonials-title { margin-bottom: 25px; }
-
-  .testimonials-list {
-    gap: 30px;
-    margin: 0 -30px;
-    padding: 30px;
-    padding-bottom: 35px;
-  }
-
-  .content-card {
-    padding: 30px;
-    padding-top: 25px;
-  }
-
-  .testimonials-avatar-box {
-    transform: translate(30px, -30px);
-    border-radius: 20px;
-  }
-
-  .testimonials-avatar-box img { width: 80px; }
-
-  .testimonials-item-title {
-    margin-bottom: 10px;
-    margin-left: 95px;
-  }
-
-  .testimonials-text {
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-  }
-
-  /* testimonials modal */
-
-  .modal-container { padding: 20px; }
-
-  .testimonials-modal {
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 25px;
-    padding: 30px;
-    border-radius: 20px;
-  }
-
-  .modal-img-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .modal-avatar-box {
-    border-radius: 18px;
-    margin-bottom: 0;
-  }
-
-  .modal-avatar-box img { width: 65px; }
-
-  .modal-img-wrapper > img {
-    display: block;
-    flex-grow: 1;
-    width: 35px;
-  }
-
-  /* clients */
-
-  .clients-list {
-    gap: 50px;
-    margin: 0 -30px;
-    padding: 45px;
-    scroll-padding-inline: 45px;
-  }
-
-  .clients-item { min-width: calc(33.33% - 35px); }
-
-
-
-  /**
-   * #RESUME
-   */
-
-  .timeline-list { margin-left: 65px; }
-
-  .timeline-item:not(:last-child)::before { left: -40px; }
-
-  .timeline-item::after {
-    height: 8px;
-    width: 8px;
-    left: -43px;
-  }
-
-  .skills-item:not(:last-child) { margin-bottom: 25px; }
-
-
-  /**
-   * #CONTACT
-   */
-
-  .mapbox {
-    height: 380px;
-    border-radius: 18px;
-  }
-
-  .input-wrapper {
-    gap: 30px;
-    margin-bottom: 30px;
-  }
-
-  .form-input { padding: 15px 20px; }
-
-  textarea.form-input { margin-bottom: 30px; }
-
-  .form-btn {
-    --fs-6: 16px;
-    padding: 16px 20px;
-  }
-
-  .form-btn ion-icon { font-size: 18px; }
-
-}
-
-
-
-
-
-/**
- * responsive larger than 768px screen
- */
-
-@media (min-width: 768px) {
-
-  /**
-   * REUSED STYLE
-   */
-
-  .sidebar, article { width: 700px; }
-
-  .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
-
-
-
-  /**
-   * SIDEBAR
-   */
-
-  .contacts-list {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px 15px;
-  }
-
-
-
-  /**
-   * NAVBAR
-   */
-
-  .navbar-link { --fs-8: 15px; }
-
-
-
-  /**
-   * ABOUT
-   */
-
-  /* testimonials modal */
-
-  .testimonials-modal {
-    gap: 35px;
-    max-width: 680px;
-  }
-
-  .modal-avatar-box img { width: 80px; }
-
-
-
-  /**
-   * PORTFOLIO
-   */
-
-  .article-title { padding-bottom: 20px; }
-
-  .filter-select-box { display: none; }
-
-  .filter-list {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 25px;
-    padding-left: 5px;
-    margin-bottom: 30px;
-  }
-
-  .filter-item button {
-    color: var(--light-gray);
-    font-size: var(--fs-5);
-    transition: var(--transition-1);
-  }
-
-  .filter-item button:hover { color: var(--light-gray-70); }
-
-  .filter-item button.active { color: var(--orange-yellow-crayola); }
-
-  /**
-   * CONTACT
-   */
-
-  .input-wrapper { grid-template-columns: 1fr 1fr; }
-
-  .form-btn {
-    width: max-content;
-    margin-left: auto;
-  }
-  
-}
-
-/**
- * responsive larger than 1024px screen
- */
-
-@media (min-width: 1024px) {}
-
-  /**
-   * CUSTOM PROPERTY
-   */
-
-  :root {
-
-    /**
-    * shadow
-    */
-
-    --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.125);
-    --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.125);
-    --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.125);
-
-  }
-
-
-
-  /**
-   * REUSED STYLE
-   */
-
-  .sidebar, article {
-    width: 950px;
-    box-shadow: var(--shadow-5);
-  }
-
-
-
-  /**
-   * MAIN 
-   */
-
-  main { margin-bottom: 60px; }
-
-  .main-content {
-    position: relative;
-    width: max-content;
-    margin: auto;
-  }
-
-
-
-  /**
-   * NAVBAR
-   */
-
-  .navbar {
-    position: absolute;
-    bottom: auto;
-    top: 0;
-    left: auto;
-    right: 0;
-    width: max-content;
-    border-radius: 0 20px;
-    padding: 0 20px;
-    box-shadow: none;
-  }
-
-  .navbar-list {
-    gap: 30px;
-    padding: 0 20px;
-  }
-
-  .navbar-link { font-weight: var(--fw-500); }
-
-
-
-  /**
-   * ABOUT
-   */
-
-  /* service */
-
-  .service-list {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 25px;
-  }
-
-  /* testimonials */
-
-  .testimonials-item { min-width: calc(50% - 15px); }
-
-  /* clients */
-
-  .clients-item { min-width: calc(25% - 38px); }
-
-
-
-  /**
-   * PORTFOLIO
-   */
-
-  .project-list { grid-template-columns: repeat(3, 1fr); }
-
-/**
- * responsive larger than 1250px screen
- */
-
-@media (min-width: 1250px) {
-
-  /**
-   * RESET
-   */
-
-  body::-webkit-scrollbar { width: 20px; }
-
-  body::-webkit-scrollbar-track { background: var(--smoky-black); }
-
-  body::-webkit-scrollbar-thumb {
-    border: 5px solid var(--smoky-black);
-    background: hsla(0, 0%, 100%, 0.1);
-    border-radius: 20px;
-    box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
-                inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
-  }
-
-  body::-webkit-scrollbar-thumb:hover { background: hsla(0, 0%, 100%, 0.15); }
-
-  body::-webkit-scrollbar-button { height: 60px; }
-
-
-
-  /**
-   * REUSED STYLE
-   */
-
-  .sidebar, article { width: auto; }
-
-  article { min-height: 100%; }
-
-
-
-  /**
-   * MAIN
-   */
-
-  main {
-    max-width: 1200px;
-    margin-inline: auto;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 25px;
-  }
-
-  .main-content {
-    min-width: 75%;
-    width: 75%;
-    margin: 0;
-  }
-
-
-
-  /**
-   * SIDEBAR
-   */
-
-  .sidebar {
-    position: sticky;
-    top: 60px;
-    max-height: max-content;
-    height: 100%;
-    margin-bottom: 0;
-    padding-top: 60px;
-    z-index: 1;
-  }
-
-  .sidebar-info { flex-direction: column; }
-
-  .info-content .name {
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .info-content .title { margin: auto; }
-
-  .info_more-btn { display: none; }
-
-  .sidebar-info_more {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .contacts-list { grid-template-columns: 1fr; }
-
-  .contact-info :is(.contact-link) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .contact-info :is(.contact-link, time, address) {
-    --fs-7: 14px;
-    font-weight: var(--fw-300);
-  }
-
-  .separator:last-of-type {
-    margin: 15px 0;
-    opacity: 0;
-  }
-
-  .social-list { justify-content: center; }
-
-
-
-  /**
-	 * RESUME
-	 */
-
-  .timeline-text { max-width: 700px; }
-
-}
-
-  
-  
-
-  /* Position the "next button" to the right */
-  .next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-  }
-
-
-  /* Caption text */
-  .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 0; /* Position at the very bottom */
-    width: 100%;
-    text-align: center;
-    background-color: rgba(0,0,0,0.6); /* Semi-transparent background for text */
-    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
-    box-sizing: border-box; /* Include padding in width calculation */
-  }
 
 
 
@@ -2046,3 +1392,507 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 }
   
+/*-----------------------------------*\
+  #RESPONSIVE
+\*-----------------------------------*/
+
+/* Base styles for all screens (mobile-first) */
+body {
+    padding: 15px; /* Default body padding */
+}
+
+main {
+    margin: 15px;
+    margin-bottom: 75px; /* Space for bottom nav */
+    width: auto; /* Allow width to be determined by content/flexbox */
+    min-width: 0; /* Ensure it can shrink */
+}
+
+.sidebar,
+article {
+    padding: 15px; /* Base padding for these containers */
+    width: 100%; /* Default to full width on small screens */
+    margin-inline: auto; /* Center them */
+}
+
+.main-content {
+    width: 100%; /* Default to full width on small screens */
+    margin-left: 0; /* Ensure no fixed left margin from desktop */
+    padding: 0; /* Reset padding, sections will add their own */
+}
+
+/* Responsive larger than 450px screen */
+@media (min-width: 450px) {
+  .clients-item { min-width: calc(33.33% - 10px); } /* 3 clients per row */
+}
+
+
+/* Responsive larger than 580px screen (Covers larger phones like iPhone 14 Pro Max) */
+@media (min-width: 580px) {
+
+  /* CUSTOM PROPERTY */
+  :root {
+    --fs-1: 32px;
+    --fs-2: 24px;
+    --fs-3: 26px;
+    --fs-4: 18px;
+    --fs-6: 15px;
+    --fs-7: 15px;
+    --fs-8: 12px;
+  }
+
+  /* REUSED STYLE */
+  .sidebar, article {
+      max-width: 700px; /* Cap width for larger phones/small tablets */
+      padding: 30px; /* Increased padding */
+  }
+
+  .article-title {
+    font-weight: var(--fw-600);
+    padding-bottom: 15px;
+  }
+
+  .article-title::after {
+    width: 40px;
+    height: 5px;
+  }
+
+  .icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 18px;
+  }
+
+  /* MAIN */
+  main {
+    margin-top: 60px;
+    margin-bottom: 100px;
+    display: block; /* Ensure stacking for this range */
+    margin-inline: auto;
+    max-width: 100%;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    max-height: 180px;
+    margin-bottom: 30px;
+  }
+
+  .sidebar.active { max-height: 584px; }
+
+  .sidebar-info { gap: 25px; }
+
+  .avatar-box { /* Adjust avatar size for larger phones/tablets */
+      width: 150px;
+      height: 150px;
+  }
+  .info-content .name { margin-bottom: 15px; }
+  .info-content .title { padding: 5px 18px; }
+
+  .info_more-btn {
+    top: -30px;
+    right: -30px;
+    padding: 10px 15px;
+  }
+
+  .info_more-btn span {
+    display: block;
+    font-size: var(--fs-8);
+  }
+
+  .info_more-btn ion-icon { display: none; }
+
+  .separator { margin: 32px 0; }
+  .contacts-list { gap: 20px; }
+  .contact-info {
+    max-width: calc(100% - 64px);
+    width: calc(100% - 64px);
+  }
+
+  /* NAVBAR */
+  .navbar { border-radius: 20px 20px 0 0; }
+  .navbar-list { gap: 20px; }
+  .navbar-link { --fs-8: 14px; }
+
+  /* ABOUT */
+  .about .article-title { margin-bottom: 20px; }
+  .about-text { margin-bottom: 40px; }
+
+  /* service */
+  .service-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 30px;
+  }
+  .service-icon-box {
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+  .service-content-box { text-align: left; }
+
+  /* testimonials */
+  .testimonials-title { margin-bottom: 25px; }
+  .testimonials-list {
+    gap: 30px;
+    margin: 0 -30px;
+    padding: 30px;
+    padding-bottom: 35px;
+  }
+  .content-card {
+    padding: 30px;
+    padding-top: 25px;
+  }
+  .testimonials-avatar-box {
+    transform: translate(30px, -30px);
+    border-radius: 20px;
+  }
+  .testimonials-avatar-box img { width: 80px; }
+  .testimonials-item-title {
+    margin-bottom: 10px;
+    margin-left: 95px;
+  }
+  .testimonials-text {
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+  }
+
+  /* testimonials modal */
+  .modal-container { padding: 20px; }
+  .testimonials-modal {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 25px;
+    padding: 30px;
+    border-radius: 20px;
+  }
+  .modal-img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-avatar-box {
+    border-radius: 18px;
+    margin-bottom: 0;
+  }
+  .modal-avatar-box img { width: 65px; }
+  .modal-img-wrapper > img {
+    display: block;
+    flex-grow: 1;
+    width: 35px;
+  }
+
+  /* clients */
+  .clients-list {
+    gap: 50px;
+    margin: 0 -30px;
+    padding: 45px;
+    scroll-padding-inline: 45px;
+  }
+  .clients-item { min-width: calc(33.33% - 35px); } /* 3 clients per row */
+
+  /* RESUME */
+  .timeline-list { margin-left: 65px; }
+  .timeline-item:not(:last-child)::before { left: -40px; }
+  .timeline-item::after {
+    height: 8px;
+    width: 8px;
+    left: -43px;
+  }
+  .skills-item:not(:last-child) { margin-bottom: 25px; }
+
+  /* CONTACT */
+  .mapbox {
+    height: 380px;
+    border-radius: 18px;
+  }
+  .input-wrapper {
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  .form-input { padding: 15px 20px; }
+  textarea.form-input { margin-bottom: 30px; }
+  .form-btn {
+    --fs-6: 16px;
+    padding: 16px 20px;
+  }
+  .form-btn ion-icon { font-size: 18px; }
+}
+
+
+/* Responsive larger than 768px screen (Covers Tablets in Portrait) */
+@media (min-width: 768px) {
+
+  /* REUSED STYLE */
+  .sidebar, article {
+      max-width: 850px; /* Cap width for tablets */
+      padding: 40px; /* More padding for larger screens */
+  }
+  .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
+
+  /* SIDEBAR */
+  .contacts-list {
+    grid-template-columns: 1fr 1fr; /* Two columns for contacts */
+    gap: 30px 15px;
+  }
+
+  /* NAVBAR */
+  .navbar-link { --fs-8: 15px; }
+
+  /* ABOUT */
+  /* testimonials modal */
+  .testimonials-modal {
+    gap: 35px;
+    max-width: 680px;
+  }
+  .modal-avatar-box img { width: 80px; }
+
+  /* PORTFOLIO */
+  .article-title { padding-bottom: 20px; }
+  .project-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Allow two columns if space permits */
+        gap: 30px;
+    }
+  .filter-select-box { display: none; } /* Hide dropdown on larger screens */
+  .filter-list { /* Show horizontal filter buttons */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    padding-left: 5px;
+    margin-bottom: 30px;
+  }
+  .filter-item button {
+    color: var(--light-gray);
+    font-size: var(--fs-5);
+    transition: var(--transition-1);
+  }
+  .filter-item button:hover { color: var(--light-gray-70); }
+  .filter-item button.active { color: var(--orange-yellow-crayola); }
+
+  /* CONTACT */
+  .input-wrapper { grid-template-columns: 1fr 1fr; } /* Two columns for form inputs */
+  .form-btn {
+    width: max-content;
+    margin-left: auto;
+  }
+}
+
+
+/* Responsive larger than 1024px screen (Desktop Layout) */
+@media (min-width: 1024px) {
+
+  /* CUSTOM PROPERTY */
+  :root {
+    --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.125);
+    --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.125);
+    --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.125);
+  }
+
+  /* REUSED STYLE */
+  .sidebar, article {
+      width: auto; /* Let flexbox control width */
+      max-width: none; /* Remove max-width constraint for desktop flex */
+      box-shadow: var(--shadow-5);
+  }
+  article { min-height: 100%; } /* Ensure articles stretch within flex container */
+
+  /* MAIN */
+  main {
+      margin-bottom: 60px;
+      display: flex; /* Enable flexbox for side-by-side desktop layout */
+      justify-content: flex-start; /* Align content to start */
+      align-items: stretch; /* Stretch children to fill height */
+      gap: 25px;
+      max-width: 1200px; /* Max width for the entire main layout */
+      margin-inline: auto; /* Center the main layout */
+  }
+
+  .main-content {
+      flex-grow: 1; /* Allow it to take available space */
+      width: auto; /* Let flex-grow manage width */
+      margin: 0;
+      min-width: 70%; /* Give main content a reasonable min-width in desktop flex */
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+      position: sticky; /* Keep sticky for desktop */
+      top: 60px; /* Position from top */
+      height: max-content; /* Allow sidebar to take height of its content */
+      min-width: 280px; /* Give sidebar a reasonable min-width */
+      width: 280px; /* Fixed width for desktop */
+      max-height: calc(100vh - 120px); /* Adjust max-height if needed */
+      overflow-y: auto; /* Enable scroll if content overflows sticky height */
+      margin-bottom: 0; /* Remove bottom margin when sticky */
+  }
+  .sidebar-info { flex-direction: column; } /* Stack info vertically */
+  .info-content .name {
+    white-space: nowrap;
+    text-align: center;
+  }
+  .info-content .title { margin: auto; }
+  .info_more-btn { display: none; } /* Hide "Show Contacts" button on desktop */
+  .sidebar-info_more { /* Always visible on desktop */
+    opacity: 1;
+    visibility: visible;
+  }
+  .contacts-list { grid-template-columns: 1fr; } /* Single column for contacts on desktop */
+  .contact-info :is(.contact-link) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .contact-info :is(.contact-link, time, address) {
+    --fs-7: 14px;
+    font-weight: var(--fw-300);
+  }
+  .separator:last-of-type {
+    margin: 15px 0;
+    opacity: 0; /* Hide last separator if not needed */
+  }
+  .social-list { justify-content: center; } /* Center social icons */
+
+
+  /* NAVBAR */
+  .navbar {
+    position: absolute; /* Position relative to main */
+    bottom: auto;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: max-content;
+    border-radius: 0 20px;
+    padding: 0 20px;
+    box-shadow: none;
+  }
+  .navbar-list {
+    gap: 30px;
+    padding: 0 20px;
+  }
+  .navbar-link { font-weight: var(--fw-500); }
+
+
+  /* ABOUT */
+  /* service */
+  .service-list {
+    grid-template-columns: 1fr 1fr; /* Two columns for services */
+    gap: 20px 25px;
+  }
+
+  /* testimonials */
+  .testimonials-item { min-width: calc(50% - 15px); } /* Two testimonials per row */
+
+  /* clients */
+  .clients-item { min-width: calc(25% - 38px); } /* Four clients per row */
+
+
+  /* PORTFOLIO */
+  .project-list { grid-template-columns: repeat(3, 1fr); } /* Three columns for projects */
+
+  /* RESUME */
+  .timeline-text { max-width: 700px; } /* Max width for timeline text */
+
+}
+
+
+/* Responsive larger than 1250px screen (Larger Desktop Refinements) */
+@media (min-width: 1250px) {
+  /* RESET */
+  body::-webkit-scrollbar { width: 20px; }
+  body::-webkit-scrollbar-track { background: var(--smoky-black); }
+  body::-webkit-scrollbar-thumb {
+    border: 5px solid var(--smoky-black);
+    background: hsla(0, 0%, 100%, 0.1);
+    border-radius: 20px;
+    box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
+                inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
+  }
+  body::-webkit-scrollbar-thumb:hover { background: hsla(0, 0%, 100%, 0.15); }
+  body::-webkit-scrollbar-button { height: 60px; }
+
+  /* REUSED STYLE */
+  .sidebar, article { width: auto; } /* Let flexbox control width */
+  article { min-height: 100%; } /* Ensure articles stretch */
+
+  /* MAIN */
+   main {
+        max-width: 1400px; /* Increased max-width for very large screens */
+        margin-inline: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 30px; /* Slightly larger gap */
+    }
+
+  .main-content {
+        flex-grow: 1;
+        width: auto;
+        margin: 0;
+    }
+
+  /* SIDEBAR */
+    .sidebar {
+        min-width: 380px; /* Give sidebar a larger fixed width for very large screens */
+        width: 380px;
+        max-height: max-content;
+        padding-top: 60px;
+    }
+
+  .sidebar-info { flex-direction: column; } /* Stack info vertically */
+  .info-content .name {
+    white-space: nowrap;
+    text-align: center;
+  }
+  .info-content .title { margin: auto; }
+  .info_more-btn { display: none; }
+  .sidebar-info_more {
+    opacity: 1;
+    visibility: visible;
+  }
+  .contacts-list { grid-template-columns: 1fr; }
+  .contact-info :is(.contact-link) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .contact-info :is(.contact-link, time, address) {
+    --fs-7: 14px;
+    font-weight: var(--fw-300);
+  }
+  .separator:last-of-type {
+    margin: 15px 0;
+    opacity: 0;
+  }
+  .social-list { justify-content: center; }
+
+  /* NAVBAR */
+  .navbar {
+    padding: 0 30px; /* More padding for larger screens */
+  }
+  .navbar-list {
+    gap: 40px; /* Larger gap for nav links */
+  }
+
+  /* ABOUT */
+  /* service */
+  .service-list {
+    grid-template-columns: 1fr 1fr; /* Still two columns */
+  }
+
+  /* testimonials */
+  .testimonials-item { min-width: calc(50% - 15px); } /* Still two per row */
+
+  /* clients */
+  .clients-item { min-width: calc(25% - 38px); } /* Still four per row */
+
+  /* PORTFOLIO */
+  .project-list { grid-template-columns: repeat(3, 1fr); } /* Still three columns */
+
+  /* RESUME */
+  .timeline-text { max-width: 700px; }
+
+}
