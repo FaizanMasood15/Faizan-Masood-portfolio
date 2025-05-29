@@ -3,6 +3,7 @@
 \*-----------------------------------*/
 
 
+
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -14,6 +15,72 @@
    */
 
   /* gradient */
+  
+/* Profile Modal (Original, untouched by main responsiveness refactor) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 100px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 300px;
+  height:300px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 150px;
+    height: 150px;
+  }
+  .close {
+    top: 50px;
+    right: 30px;
+    font-size: 32px;
+  }
+}
+
+
+
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
     hsl(240, 1%, 25%) 3%, 
@@ -103,68 +170,7 @@
 }
 
 
-/* Profile Modal (existing, not part of the main responsiveness refactor but kept for completeness) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  padding-top: 100px;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
-  animation: fadeIn 0.3s ease-out;
-}
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 300px;
-  height:300px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  animation: zoomIn 0.3s ease-out;
-}
-
-@keyframes zoomIn {
-  from {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.close {
-  position: absolute;
-  top: 80px;
-  right: 50px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-@media screen and (max-width: 480px) {
-  .modal-content {
-    width: 150px;
-    height: 150px;
-  }
-  .close {
-    top: 50px;
-    right: 30px;
-    font-size: 32px;
-  }
-}
 
 
 /*-----------------------------------*\
@@ -208,6 +214,8 @@ input, textarea {
 html { font-family: var(--ff-poppins); }
 
 body { background: var(--smoky-black); }
+
+
 
 
 
@@ -315,6 +323,7 @@ article.active {
   border-radius: 5px;
 }
 
+/* FIX: Scrollbar thumb color is now universally yellow for has-scrollbar */
 .has-scrollbar::-webkit-scrollbar-thumb {
   background: var(--orange-yellow-crayola);
   border-radius: 5px;
@@ -367,7 +376,11 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; } /* Expanded height for mobile */
+/* FIX: Increased max-height and added overflow-y for full content visibility */
+.sidebar.active {
+    max-height: 600px; /* Increased to allow more content */
+    overflow-y: auto; /* Allow scrolling if content exceeds this height */
+}
 
 .sidebar-info {
   position: relative;
@@ -1001,7 +1014,8 @@ main {
   100% { transform: scale(1); }
 }
 
-.project-item > a { width: 100%; } /* This rule is now for project-card-trigger */
+/* Base style for project-card-trigger, which is now the clickable area */
+.project-card-trigger { width: 100%; display: block; } 
 
 .project-img {
   position: relative;
@@ -1024,8 +1038,8 @@ main {
   transition: var(--transition-1);
 }
 
-/* This rule is now for project-card-trigger:hover */
-.project-item > a:hover .project-img::before { background: hsla(0, 0%, 0%, 0.5); }
+/* FIX: Changed selector to project-card-trigger for hover effect */
+.project-card-trigger:hover .project-img::before { background: hsla(0, 0%, 0%, 0.5); }
 
 .project-item-icon-box {
     position: absolute;
@@ -1042,17 +1056,11 @@ main {
     transition: opacity 0.3s ease;
     z-index: 2; /* Ensure it's above the image */
 }
-/* This rule is now for project-card-trigger:hover */
+/* FIX: Removed conflicting opacity:0 and ensured this shows on hover */
 .project-card-trigger:hover .project-item-icon-box {
     opacity: 1; /* This makes it visible on hover */
 }
 
-
-/* This rule is now for project-card-trigger:hover */
-.project-item > a:hover .project-item-icon-box {
-  --scale: 1;
-  opacity:0; /* This rule is conflicting, will be removed */
-}
 
 .project-item-icon-box ion-icon { --ionicon-stroke-width: 50px; }
 
@@ -1063,8 +1071,8 @@ main {
   transition: var(--transition-1);
 }
 
-/* This rule is now for project-card-trigger:hover */
-.project-item > a:hover img { transform: scale(1.1); }
+/* FIX: Changed selector to project-card-trigger for hover effect */
+.project-card-trigger:hover img { transform: scale(1.1); }
 
 .project-title,
 .project-category { margin-left: 10px; }
@@ -1483,8 +1491,9 @@ article {
 
   .sidebar-info { gap: 25px; }
 
-  .avatar-box { /* Adjust avatar size for larger phones/tablets */
-      width: 150px;
+  /* FIX: Adjust avatar size for larger phones/tablets */
+  .avatar-box {
+      width: 150px; /* Smaller size for larger phones/small tablets */
       height: 150px;
   }
   .info-content .name { margin-bottom: 15px; }
@@ -1804,9 +1813,10 @@ article {
   /* RESET */
   body::-webkit-scrollbar { width: 20px; }
   body::-webkit-scrollbar-track { background: var(--smoky-black); }
+  /* FIX: Apply yellow scrollbar thumb at 1250px and above as well */
   body::-webkit-scrollbar-thumb {
     border: 5px solid var(--smoky-black);
-    background: hsla(0, 0%, 100%, 0.1);
+    background: var(--orange-yellow-crayola); /* Now yellow! */
     border-radius: 20px;
     box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
                 inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
