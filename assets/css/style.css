@@ -391,8 +391,8 @@ main {
 }
 
 .avatar-box {
-    width: 120px; /* Base size for avatar */
-    height: 120px;
+    width: 100px; /* Base size for avatar */
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
@@ -1493,8 +1493,8 @@ article {
 
   /* FIX: Adjust avatar size for larger phones/tablets */
   .avatar-box {
-      width: 120px; /* Smaller size for larger phones/small tablets */
-      height: 120px;
+      width: 80px; /* Smaller size for larger phones/small tablets */
+      height: 80px;
   }
   .info-content .name { margin-bottom: 15px; }
   .info-content .title { padding: 5px 18px; }
